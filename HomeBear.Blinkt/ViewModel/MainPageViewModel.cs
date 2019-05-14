@@ -37,7 +37,7 @@ namespace HomeBear.Blinkt.ViewModel
         {
             get
             {
-                return "Good afternoon John!";
+                return "Hey ho maker friends!";
             }
         }
 
@@ -122,6 +122,10 @@ namespace HomeBear.Blinkt.ViewModel
 
         #region Constructor
 
+        /// <summary>
+        /// Constructor of the MainPageViewModel.
+        /// Will setup timers and commands.
+        /// </summary>
         public MainPageViewModel()
         {
             // Setup timer.
@@ -165,6 +169,7 @@ namespace HomeBear.Blinkt.ViewModel
                 // interpret the command call as "stop".
                 if (animatedThreadTimer != null)
                 {
+                    blinktController.TurnOff();
                     StopAnimateTimer();
                     return;
                 }
@@ -178,17 +183,29 @@ namespace HomeBear.Blinkt.ViewModel
         #endregion
 
         #region Private helper methods
+
+        /// <summary>
+        /// Will stop the animate timer.
+        /// </summary>
         private void StopAnimateTimer()
         {
             animatedThreadTimer.Cancel();
             animatedThreadTimer = null;
         }
 
+        /// <summary>
+        /// Will be update the `CurrentTime` member with each tick.
+        /// </summary>
+        /// <param name="timer"></param>
         private void ClockTimer_Tick(ThreadPoolTimer timer)
         {
             CurrentTime = DateTime.Now.ToShortTimeString();
         }
 
+        /// <summary>
+        /// Will update and modify the animate pixel with each tick.
+        /// </summary>
+        /// <param name="timer"></param>
         private void AnimatedThreadTimer_Tick(ThreadPoolTimer timer)
         {
             // Animate pixel. 

@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 
 namespace HomeBear.Blinkt.Controller
@@ -323,6 +321,9 @@ namespace HomeBear.Blinkt.Controller
 
     }
 
+    /// <summary>
+    /// Describes all available Blinkt controller actions per pixel.
+    /// </summary>
     enum BlinktControllerAction
     {
         TurnOn,

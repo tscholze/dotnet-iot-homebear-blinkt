@@ -5,6 +5,9 @@ using Windows.ApplicationModel.Core;
 
 namespace HomeBear.Blinkt.ViewModel
 {
+    /// <summary>
+    /// This helper class simplifies the process of `INotifyPropertyChanged` handling.
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
@@ -20,11 +23,12 @@ namespace HomeBear.Blinkt.ViewModel
         /// <param name="propertyName">Property name.</param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
+            // Ensure required data is set.
             var changed = PropertyChanged;
             if (changed == null)
                 return;
 
-            // Dispatch action onto the ui thread
+            // Dispatch action onto the ui thread.
             _ = dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
             });
@@ -34,6 +38,9 @@ namespace HomeBear.Blinkt.ViewModel
 
         #region Private properties 
 
+        /// <summary>
+        /// Current dispatcher.
+        /// </summary>
         private readonly CoreDispatcher dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
 
         #endregion

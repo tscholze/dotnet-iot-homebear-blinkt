@@ -1,21 +1,19 @@
-# HomeBear.Blinkt - Twitch Teams Browser
+# HomeBear.Blinkt
 
-<img src="docs/bear.png" width="100" /> 
-<img src="docs/bear.png" width="100" /> 
+<img src="docs/header.png" width="100" /> 
 
 > Windows 10 IoT Core UWP app that works great with the Pimoroni Blinkt! LED Raspberry Pi HAT.
 
 ## Prerequirements
 - Windows 10
 - Visual Studio 2019
-- Raspbbery Pi 3 (B) with Windows 10 IoT Core 17763 or higher
-- Pimoroni Blinkt Raspberry Pi HAT
+- Raspbbery Pi 3 (B) with [Windows 10 IoT Core](https://developer.microsoft.com/en-us/windows/iot) 17763 or higher
+- [Pimoroni Blinkt!](https://shop.pimoroni.com/products/blinkt) Raspberry Pi HAT
 
 ## How it looks
 
-![Team](docs/foo.png)
-![Team](docs/bar.png)
-![Search](docs/search.png)
+![On-device](docs/on-device-screenshot.jpg)
+![Device](docs/real-device.jpg)
 
 ## Contributing
 
@@ -24,6 +22,11 @@ Feel free to improve the quality of the code. It would be great to learn more fr
 ## Authors
 
 Just me, [Tobi]([https://tscholze.github.io).
+
+## Special thanks to
+Thanks to [cpayette](https://www.twitch.tv/cpayette) to encouraging me to stay on the ball with Windows 10 IoT Core and keep streaming my coding attemps.
+
+![Discord](docs/thanks.png)
 
 ## Thanks to
 

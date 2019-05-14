@@ -1,0 +1,327 @@
+﻿<Page
+    x:Class="HomeBear.Blinkt.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HomeBear.Blinkt"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <!-- Pixel button style -->
+        <Style x:Key="PixelButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Flyout" Value="{StaticResource PixelColorPickerFlyOut}" />
+        </Style>
+
+        <!-- Pixel button flyout -->
+        <Flyout x:Key="PixelColorPickerFlyOut" x:Name="PixelColorPickerFlyOut">
+            <StackPanel>
+                <!-- Picker -->
+                <ColorPicker x:Name="PixelColorPicker"
+                             Tag="{Binding Tag}"
+                             IsAlphaEnabled="False"
+                             IsColorChannelTextInputVisible="False"
+                             IsAlphaSliderVisible="False"
+                             IsAlphaTextInputVisible="False"
+                             IsHexInputVisible="False"
+                             IsColorSliderVisible="False"
+                             Width="300"/>
+
+                <!-- Button row -->
+                <Grid Margin="0 20 0 0">
+                    <Grid.ColumnDefinitions>
+                        <!-- Apply button-->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- Cancel button -->
+                        <ColumnDefinition Width="Auto" />
+                        <!-- Spacer -->
+                        <ColumnDefinition Width="*" />
+                        <!-- Turn off button -->
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Apply button -->
+                    <Button Grid.Column="0"
+                            Content="Apply"
+                            Click="ColorPickerApplyButton_Click"
+                            Width="75"
+                            Margin="0 0 10 0"/>
+
+                    <!-- Cancel button -->
+                    <Button Grid.Column="1"
+                            Content="Cancel"
+                            Click="ColorPickerCancelButton_Click"
+                            Width="75"/>
+
+                    <!-- Turn off button -->
+                    <Button Grid.Column="3"
+                            Content="Turn off"
+                            Click="ColorPickerTurnOffButton_Click"
+                            Width="100"/>
+                </Grid>
+            </StackPanel>
+        </Flyout>
+    </Page.Resources>
+
+    <!-- Page grid-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--  Header  -->
+            <RowDefinition Height="Auto" />
+            <!--  Content  -->
+            <RowDefinition Height="*" />
+            <!--  Footer  -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Header  -->
+        <StackPanel Grid.Row="0">
+            <!--  Text values  -->
+            <Grid Margin="5 5 5 5">
+                <Grid.ColumnDefinitions>
+                    <!--  Left side  -->
+                    <ColumnDefinition Width="Auto" />
+                    <!--  Spacer  -->
+                    <ColumnDefinition Width="*" />
+                    <!--  Right side  -->
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Left side  -->
+                <TextBlock Grid.Column="0" Text="{Binding Greeting}" />
+
+                <!--  Rigt side  -->
+                <TextBlock Grid.Column="2" Text="{Binding CurrentTime, Mode=OneWay}" />
+            </Grid>
+
+            <!--  Seperator  -->
+            <Border Style="{StaticResource BorderSeperatorStyle}" />
+        </StackPanel>
+
+        <!--  Content  -->
+        <StackPanel Grid.Row="1" 
+                    Margin="20,0,20,0" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <!--  Title  -->
+            <TextBlock Text="Pimoroni Blinkt"
+                       FontSize="75" />
+
+            <!--  Page content  -->
+            <StackPanel Margin="20">
+
+                <!--  Light settings  -->
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Padding="0 0 20 0">
+                        <!-- Title -->
+                        <TextBlock Text="LED values:"
+                                   FontSize="24"
+                                   Margin="0 0 0 20"/>
+                    </StackPanel>
+
+                    <!-- Settings boxes -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!-- Buttons -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Sliders -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Pixel color pickers -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Spacer to the right -->
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Buttons -->
+                        <StackPanel Grid.Column="0"  
+                                    Padding="10"
+                                    Margin="0 0 20 0"
+                                    BorderBrush="White" 
+                                    BorderThickness="1" >
+
+                            <!--  On / off  -->
+                            <Button Command="{Binding LightSwitchCommand}" 
+                                    Content="On / Off"
+                                    Margin="0 0 0 20"
+                                    Width="100"/>
+
+                            <Button Command="{Binding RandomizeLightCommand}"
+                                    Content="Randomize"
+                                    Margin="0 0 0 20"
+                                    Width="100"/>
+
+                            <Button Command="{Binding AnimateLightCommand}"
+                                    Content="Animate"
+                                    Width="100" />
+                        </StackPanel>
+
+                        <!--  Sliders  -->
+                        <StackPanel Grid.Column="1" 
+                                    Orientation="Horizontal" 
+                                    Padding="10" 
+                                    Margin="0 0 20 0"
+                                    BorderBrush="White" 
+                                    BorderThickness="1">
+
+                            <!-- Brightness -->
+                            <StackPanel Padding="0 10 10 10">
+                                <Slider Name="BrightnessSlider"
+                                        Height="75"
+                                        Orientation="Vertical"
+                                        Maximum="100"
+                                        Minimum="0"
+                                        StepFrequency="20"
+                                        ValueChanged="BrightnessSlider_ValueChanged" />
+
+                                <TextBlock Text="{Binding ElementName=BrightnessSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                           TextAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="Hue"
+                                           TextAlignment="Center"/>
+                            </StackPanel>
+
+                            <!--  Red  -->
+                            <StackPanel Padding="10">
+                                <Slider Name="RedColorSlider" 
+                                        Height="75"
+                                        Orientation="Vertical"
+                                        Maximum="255"
+                                        Minimum="0"
+                                        StepFrequency="5"
+                                        ValueChanged="RedSlider_ValueChanged" />
+
+                                <TextBlock Text="{Binding ElementName=RedColorSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                           TextAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="Red"
+                                           TextAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- Green -->
+                            <StackPanel Padding="10">
+                                <Slider Name="GreenColorSlider" 
+                                        Height="75"
+                                        Orientation="Vertical"
+                                        Maximum="255"
+                                        Minimum="0"
+                                        StepFrequency="5"
+                                        ValueChanged="GreenSlider_ValueChanged" />
+
+                                <TextBlock Text="{Binding ElementName=GreenColorSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                           TextAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="Green"
+                                           TextAlignment="Center"/>
+                            </StackPanel>
+
+                            <!--  Blue  -->
+                            <StackPanel Padding="10">
+                                <Slider Name="BlueColorSlider" 
+                                        Height="75"
+                                        Orientation="Vertical"
+                                        Maximum="255"
+                                        Minimum="0"
+                                        StepFrequency="5"
+                                        ValueChanged="BlueSlider_ValueChanged" />
+
+                                <TextBlock Text="{Binding ElementName=BlueColorSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                           TextAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="Blue"
+                                           TextAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Pixel color pickers -->
+                        <StackPanel Grid.Column="2" 
+                                    Margin="0 0 20 0"
+                                    Padding="10"
+                                    BorderBrush="White" 
+                                    BorderThickness="1">
+
+                            <!-- 2x4 Pixel color buttons -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="1"
+                                        Tag="7"/>
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="2"
+                                        Tag="6"/>
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="3"
+                                        Tag="5"/>
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="4"
+                                        Tag="4"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="5"
+                                        Tag="3"/>
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="6"
+                                        Tag="2"/>
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="7"
+                                        Tag="1"/>
+                                <Button Style="{StaticResource PixelButtonStyle}" 
+                                        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" 
+                                        Content="8"
+                                        Tag="0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <!--  Footer  -->
+        <StackPanel Grid.Row="2">
+            <!--  Seperator  -->
+            <Border
+                Grid.Row="0"
+                Style="{StaticResource BorderSeperatorStyle}" />
+
+            <!--  Text content  -->
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <!--  Left side  -->
+                    <ColumnDefinition Width="Auto" />
+                    <!--  Center  -->
+                    <ColumnDefinition Width="*" />
+                    <!--  Right side  -->
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Left side  -->
+                <TextBlock Grid.Column="0" Text="{Binding AppName}" />
+
+                <!--  Center  -->
+                <TextBlock Grid.Column="1"
+                           Text="{Binding AppVersion}"
+                           TextAlignment="Center" />
+
+                <!--  Rigt side  -->
+                <TextBlock Grid.Column="2"
+                           Text="{Binding AppAuthorUrl}" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

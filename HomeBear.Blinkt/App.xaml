@@ -1,0 +1,15 @@
+﻿<Application
+    x:Class="HomeBear.Blinkt.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HomeBear.Blinkt">
+
+    <Application.Resources>
+        <!-- Seperator border style -->
+        <Style x:Key="BorderSeperatorStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#0E0E0E" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+    </Application.Resources>
+</Application>

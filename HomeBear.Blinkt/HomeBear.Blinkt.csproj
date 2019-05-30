@@ -124,7 +124,7 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Pixel.cs" />
+    <Compile Include="Controller\APA102LED.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extension\StringExtension.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

@@ -99,7 +99,7 @@ namespace HomeBear.Blinkt.ViewModel
         /// <summary>
         /// Underlying blink controller.
         /// </summary>
-        readonly BlinktController blinktController = BlinktController.Default;
+        readonly APA102 blinktController = APA102.Default;
 
         /// <summary>
         /// Helper property to store which action should off / on button

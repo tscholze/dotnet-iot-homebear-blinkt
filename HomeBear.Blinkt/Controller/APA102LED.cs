@@ -4,9 +4,9 @@ using System;
 namespace HomeBear.Blinkt.Model
 {
     /// <summary>
-    /// Describes a rgb-colorful pixel.
+    /// Describes a rgb-colorful LED.
     /// </summary>
-    public class Pixel
+    public class APA102LED
     {
         #region Public properties
 
@@ -177,7 +177,7 @@ namespace HomeBear.Blinkt.Model
         /// <param name="green">Green value.</param>
         /// <param name="blue">Blue value.</param>
         /// <param name="brightness">Brightness value. Default value is 1.</param>
-        public Pixel(int red = 0, int green = 0, int blue = 0, int brightness = 1)
+        public APA102LED(int red = 0, int green = 0, int blue = 0, int brightness = 1)
         {
             SetRed(red);
             SetGreen(green);
@@ -191,7 +191,7 @@ namespace HomeBear.Blinkt.Model
         /// </summary>
         /// <param name="hex">Hexadecimal string.</param>
         /// <param name="brightness">Brightness value. Default value is 1.</param>
-        public Pixel(string hex, int brightness = 1)
+        public APA102LED(string hex, int brightness = 1)
         {
             SetBrightness(brightness);
             SetRgbHex(hex);

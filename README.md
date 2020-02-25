@@ -2,7 +2,7 @@
 
 <img src="docs/header.png" width="300" /> 
 
-> Windows 10 IoT Core UWP app that works great with the Pimoroni Blinkt! LED Raspberry Pi HAT.
+> Windows 10 IoT Core UWP app that works great with the Pimoroni Blinkt! LED Raspberry Pi HAT. The app is in a final state. No maintenance effort planned.
 
 ## Prerequirements
 - Windows 10

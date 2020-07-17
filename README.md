@@ -23,6 +23,10 @@ Feel free to improve the quality of the code. It would be great to learn more fr
 
 Just me, [Tobi]([https://tscholze.github.io).
 
+## Publications
+
+- [Dr. Windows article](https://www.drwindows.de/news/windows-10-iot-core-perfekt-fuer-maker-und-hobbyisten)
+
 ## Special thanks to
 Thanks to [cpayette](https://www.twitch.tv/cpayette) to encouraging me to stay on the ball with Windows 10 IoT Core and keep streaming my coding attemps.
 
